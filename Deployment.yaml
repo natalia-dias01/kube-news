@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kube-news
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kube-news
+  template:
+    metadata:
+      labels:
+        app: kube-news
+    spec:
+      containers:
+        - name: kube-news
+          image: <seu-usuario>/kube-news
+          ports:
+            - containerPort: 8080
+          env:
+            - name: DB_DATABASE
+              value: <nome-do-banco-de-dados>
+            - name: DB_USERNAME
+              value: <usuario-do-banco-de-dados>
+            - name: DB_PASSWORD
+              value: <senha-do-usuario-do-banco-de-dados>
+            - name: DB_HOST
+              value: <endereco-do-banco-de-dados>
